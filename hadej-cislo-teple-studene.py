@@ -16,20 +16,18 @@ chce_pokracovat = "ano"
 while chce_pokracovat == "ano":
     cislo = randrange(1, 100)
     odpoved = int(input("Hádej, jaké si myslím číslo?"))
-    if odpoved == cislo:
+    while odpoved != cislo:
+        if abs(odpoved - cislo) <= 3:
+            print("Hodně blízko!")
+        elif abs(odpoved - cislo) <= 10:
+            print("Blízko.")
+        elif abs(odpoved - cislo) > 10:
+            print("Daleko.")
+        pocet_pokusu = pocet_pokusu + 1
+        odpoved = int(input("Hádej dál."))
+    else:
         print(f"Uhádl jsi! Tvůj počet pokusů je {pocet_pokusu}.")
         pocet_pokusu = 0
         chce_pokracovat = input("Chceš hrát znovu?")
-        continue
-
-    if abs(odpoved - cislo) <= 3:
-        print("Hodně blízko!")
-    elif abs(odpoved - cislo) <= 10:
-        print("Blízko.")
-    elif abs(odpoved - cislo) > 10:
-        print("Daleko.")
-
-    pocet_pokusu = pocet_pokusu + 1
-    odpoved = int(input("Hádej dál."))
 else:
     print("Děkuji za hru.")
