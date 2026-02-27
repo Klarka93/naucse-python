@@ -31,12 +31,11 @@ print(uzivatelske_jmeno.lower())
 #heslo = input("Heslo musí obsahovat číslo. Zadej jiné heslo. ")
 
 
-
-ma_aspon_8_znaku = False
-obsahuje_cislo = False
-obsahuje_velke_pismeno = False
 heslo_je_platne = False
 while heslo_je_platne == False:
+    ma_aspon_8_znaku = False
+    obsahuje_cislo = False
+    obsahuje_velke_pismeno = False
     heslo = input("Zadej heslo. ")
     if len(heslo) >= 8:
         ma_aspon_8_znaku = True
@@ -46,23 +45,21 @@ while heslo_je_platne == False:
         if znak.isdigit() == True:
             obsahuje_cislo = True
             break
-        else:
-            print("Heslo musí obsahovat číslo.")
-            break
+    if not obsahuje_cislo:
+        print("Heslo musí obsahovat číslo.")
     for znak in heslo:
         if znak.isupper() == True:
             obsahuje_velke_pismeno = True
             break
-        else:
-            print("Heslo musí obsahovat velké písmeno.")
-            break
+    if not obsahuje_velke_pismeno:
+        print("Heslo musí obsahovat velké písmeno.")
     if ma_aspon_8_znaku == True and obsahuje_cislo == True and obsahuje_velke_pismeno == True:
         heslo_je_platne = True
-    #else:
-        #heslo = input("Zadej jiné heslo. ")
 else:
     print("Heslo je platné.")
 
+# Abcdefgh
+# 1bcdefgh
 
 """
 #POČÍTÁNÍ SUROVIN PRO VĚTŠÍ DORTOVOU FORMU
