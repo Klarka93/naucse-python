@@ -30,41 +30,55 @@ print(uzivatelske_jmeno.lower())
 #heslo = input("Heslo musí mít alespoň 8 znaků. Zadej delší heslo. ")
 #heslo = input("Heslo musí obsahovat číslo. Zadej jiné heslo. ")
 
-
-heslo_je_platne = False
-while heslo_je_platne == False:
-    ma_aspon_8_znaku = False
-    obsahuje_cislo = False
-    obsahuje_velke_pismeno = False
-    heslo = input("Zadej heslo. ")
+def at_least_8(heslo):
     if len(heslo) >= 8:
-        ma_aspon_8_znaku = True
-    else:
-        print("Heslo musí mít alespoň 8 znaků.")
+        return True
+
+    print("Heslo musí mít alespoň 8 znaků.")
+    return False
+
+
+def has_number(heslo):
     for znak in heslo:
-        if znak.isdigit() == True:
-            obsahuje_cislo = True
-            break
-    if not obsahuje_cislo:
-        print("Heslo musí obsahovat číslo.")
+        if znak.isdigit():
+            return True
+
+    print("Heslo musí obsahovat číslo.")
+    return False
+
+
+def has_capital(heslo):
     for znak in heslo:
-        if znak.isupper() == True:
-            obsahuje_velke_pismeno = True
-            break
-    if not obsahuje_velke_pismeno:
-        print("Heslo musí obsahovat velké písmeno.")
-    if ma_aspon_8_znaku == True and obsahuje_cislo == True and obsahuje_velke_pismeno == True:
-        heslo_je_platne = True
+        if znak.isupper():
+            return True
+
+    print("Heslo musí obsahovat velké písmeno.")
+    return False
+
+
+def valid_password(heslo):
+    return at_least_8(heslo) and has_number(heslo) and has_capital(heslo)
+
+"""
+heslo_je_platne = False
+while not heslo_je_platne:
+    heslo = input("Zadej heslo. ")
+    heslo_je_platne = valid_password(heslo)
 else:
     print("Heslo je platné.")
+"""
 
-# Abcdefgh
-# 1bcdefgh
+assert not valid_password("Abcdefgh")
+assert not valid_password("1bcdefgh")
+assert not valid_password("1bcd")
+assert valid_password("1bcdAbcd")
+assert not valid_password("")
+assert not valid_password("@bcdAbcd")
 
 """
 #POČÍTÁNÍ SUROVIN PRO VĚTŠÍ DORTOVOU FORMU
 #Chci, aby se vypsalo několik řádků a na každém řádku aby se vypsala surovina a zároveň se propočítalo její množství
-do receptu s větší dortovou formou.
+#do receptu s větší dortovou formou.
 sablona = {surovina}, {původní množství} * 1.5625
 print(sablona.format(původní množství=140, surovina='dětské sušenky'))
 print(sablona.format(původní množství=40, surovina='ovesné vločky'))
@@ -78,4 +92,5 @@ print(sablona.format(původní množství=10, surovina='vanilkový puding'))
 #počítání surovin po jednom
 puvodni_mnozstvi = 10
 print(1.5625 * puvodni_mnozstvi)
+
 """
